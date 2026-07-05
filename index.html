@@ -1,0 +1,261 @@
+<html>
+<head>
+  <title>Work Log Summary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWGNnlvR10sY3jn6-xUAoRIYuAz0KodHzLow&s') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(15px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .mill-title {
+      font-size: 30px;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .mill-banner {
+      width: 100%;
+      height: 180px;
+      background: url('https://www.tmills.com/img/gallery/big/gallery_15.jpg') no-repeat center center/cover;
+      border-radius: 12px;
+    }
+
+    h2 {
+      margin: 10px 0;
+      color: #333;
+      font-size: 24px;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+
+    .input-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    label {
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #222;
+      font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #ffffff;
+      color: #000000;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    select:focus {
+      border-color: #ff6a00;
+      box-shadow: 0 0 8px rgba(255, 106, 0, 0.5);
+      outline: none;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+      transform: scale(1.04);
+    }
+
+    .role-buttons {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .role-btn {
+      flex: 1;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      color: white;
+      background: linear-gradient(135deg, #00c9ff, #92fe9d);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .role-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .role-btn.active {
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      box-shadow: 0 0 12px rgba(255, 106, 0, 0.7);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      .mill-title {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="mill-title">Thiagarajar Mills</div>
+  <div class="mill-banner"></div>
+
+  <h2>Work Log Summary</h2>
+
+  <form action="role_redirect.php" method="POST">
+    <div class="input-group">
+      <label>Select Role</label>
+      <div class="role-buttons">
+        <button type="button" class="role-btn" onclick="selectRole('employee')">Employee</button>
+        <button type="button" class="role-btn" onclick="selectRole('admin')">Admin</button>
+      </div>
+      <input type="hidden" name="role" id="role" required>
+    </div>
+
+    <!-- Employee Fields -->
+    <div id="employeeFields" style="display: none;">
+      <div class="input-group">
+       
+      </div>
+      <div class="input-group">
+        
+      </div>
+    </div>
+
+    <div id="adminFields" style="display: none;">
+      <div class="input-group">
+        <label for="admin_name">Admin Name</label>
+        <input type="text" id="admin_name" name="admin_name" placeholder="Enter admin name">
+      </div>
+      <div class="input-group">
+        <label for="admin_password">Admin Password</label>
+        <input type="password" id="admin_password" name="admin_password" placeholder="Enter password">
+      </div>
+    </div>
+
+    <button type="submit">Continue</button>
+  </form>
+</div>
+
+<script>
+  function toggleFields() {
+    var role = document.getElementById('role').value;
+
+    var empFields = document.getElementById('employeeFields');
+    var adminFields = document.getElementById('adminFields');
+
+    if (role === 'employee') {
+      empFields.style.display = 'block';
+      adminFields.style.display = 'none';
+      document.getElementById('username').required = true;
+      document.getElementById('emp_number').required = true;
+      document.getElementById('admin_name').required = false;
+      document.getElementById('admin_password').required = false;
+    } else if (role === 'admin') {
+      empFields.style.display = 'none';
+      adminFields.style.display = 'block';
+      document.getElementById('username').required = false;
+      document.getElementById('emp_number').required = false;
+      document.getElementById('admin_name').required = true;
+      document.getElementById('admin_password').required = true;
+    } else {
+      empFields.style.display = 'none';
+      adminFields.style.display = 'none';
+    }
+  }
+
+  function selectRole(selectedRole) {
+    document.getElementById('role').value = selectedRole;
+    toggleFields();
+
+    document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.role-btn').forEach(btn => {
+      if (btn.textContent.toLowerCase() === selectedRole) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  window.onload = function () {
+    toggleFields();
+  };
+</script>
+
+</body>
+</html>
